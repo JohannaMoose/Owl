@@ -8,7 +8,7 @@ namespace Owl.References
     public class Author
     {
         /// <summary>
-        /// Creates a new instance of the Author class
+        /// Creates a new instance of the Authors class
         /// </summary>
         /// <param name="lastName">The last name of the author</param>
         /// <param name="firstName">The first name of the author</param>
