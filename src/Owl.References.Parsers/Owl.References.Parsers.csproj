@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0E061F07-8B85-40D3-986E-303E3C80CBA7}</ProjectGuid>
+    <ProjectGuid>{79B6A451-AABF-49F8-BF99-918B4AD18568}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Owl.Tests.UnitTests</RootNamespace>
-    <AssemblyName>Owl.Tests.UnitTests</AssemblyName>
+    <RootNamespace>Owl.References.Parsers</RootNamespace>
+    <AssemblyName>Owl.References.Parsers</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,18 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Moq, Version=4.5.30.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,20 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChicagoManualStyleParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="References.Parsers\ChicagoManualStyleParser_Specs.cs" />
-    <Compile Include="References\Author_Specs.cs" />
-    <Compile Include="References\Book_Specs.cs" />
+    <Compile Include="ReferenceParser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Owl.References.Parsers\Owl.References.Parsers.csproj">
-      <Project>{79b6a451-aabf-49f8-bf99-918b4ad18568}</Project>
-      <Name>Owl.References.Parsers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Owl.References\Owl.References.csproj">
       <Project>{b00b2828-e6b0-4b17-a2bd-1ddd0b3d3b33}</Project>
       <Name>Owl.References</Name>

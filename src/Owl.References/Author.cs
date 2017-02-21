@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Owl.References
 {
@@ -48,8 +49,18 @@ namespace Owl.References
         {
             return other != null &&
                    string.Equals(FirstName, other.FirstName) &&
-                   Equals(MiddleNames, other.MiddleNames) &&
+                   sameMiddleNames(other) &&
                    string.Equals(LastName, other.LastName);
+        }
+
+        private bool sameMiddleNames(Author other)
+        {
+            for (var i = 0; i < MiddleNames.Count(); i++)
+            {
+                if (!MiddleNames.ElementAt(i).Equals(other.MiddleNames.ElementAt(i)))
+                    return false;
+            }
+            return true;
         }
 
         /// <summary>Serves as the default hash function. </summary>
