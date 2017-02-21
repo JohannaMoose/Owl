@@ -23,14 +23,31 @@ namespace Owl.References.Parsers
         /// </returns>
         public Book Book(string reference)
         {
-            var author = getAuthors(ref reference);
+            var authors = getAuthors(ref reference);
             var title = getTitle(ref reference);
             var edition = getEdition(ref reference);
             var placeOfPubliction = getPlaceOfPublication(ref reference);
             var publisher = getPublisher(ref reference);
             var publicationYear = getYearOfPublication(ref reference);
 
-            return References.Book.CreateFull(title, new List<Author> {author}, edition, placeOfPubliction, publisher, publicationYear);
+            return References.Book.CreateFull(title, authors, edition, placeOfPubliction, publisher, publicationYear);
+        }
+
+        private static IEnumerable<Author> getAuthors(ref string reference)
+        {
+            var authorString = reference.Substring(0, reference.IndexOf(".", StringComparison.Ordinal));
+            var authorParts = authorString.Split(new[] { ", ", " and " }, StringSplitOptions.RemoveEmptyEntries);
+            reference = reference.Remove(0, authorString.Length + 2);
+
+            var authors = new List<Author> {new Author(authorParts[0], authorParts[1])};
+
+            for (var i = 2; i < authorParts.Length; i++)
+            {
+                var name = authorParts[i].Split(new[] {" "}, StringSplitOptions.None);
+                authors.Add(new Author(name[1], name[0]));
+            }
+
+            return authors;
         }
 
         private static string getTitle(ref string reference)
@@ -43,7 +60,7 @@ namespace Owl.References.Parsers
         private static int getEdition(ref string reference)
         {
             var edition = 1;
-            if (reference.IndexOf(".", StringComparison.Ordinal) >= reference.IndexOf(":", StringComparison.Ordinal))
+            if (!Regex.IsMatch(reference, @"(ed\.)"))
                 return edition;
 
             var editionString = reference.Substring(0, reference.IndexOf(".", StringComparison.Ordinal));
@@ -64,7 +81,7 @@ namespace Owl.References.Parsers
         {
             var publisher = reference.Substring(0, reference.IndexOf(",", StringComparison.Ordinal));
             reference = reference.Remove(0, publisher.Length + 2);
-            return publisher;
+            return publisher.Trim();
         }
 
         private static int getYearOfPublication(ref string reference)
@@ -72,14 +89,6 @@ namespace Owl.References.Parsers
             var publicationYear = reference.Substring(0, reference.IndexOf(".", StringComparison.Ordinal));
             reference = reference.Remove(0, publicationYear.Length + 1);
             return Convert.ToInt32(publicationYear);
-        }
-
-        private static Author getAuthors(ref string reference)
-        {
-            var authorString = reference.Substring(0, reference.IndexOf(".", StringComparison.Ordinal));
-            var authorParts = authorString.Split(new[] {", "}, StringSplitOptions.RemoveEmptyEntries);
-            reference = reference.Remove(0, authorString.Length + 2);
-            return new Author(authorParts[0], authorParts[1]);
         }
     }
 }
