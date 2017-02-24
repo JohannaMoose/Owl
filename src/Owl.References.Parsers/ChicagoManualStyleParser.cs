@@ -59,15 +59,12 @@ namespace Owl.References.Parsers
 
         private static int getEdition(ref string reference)
         {
-            var edition = 1;
             if (!Regex.IsMatch(reference, @"(ed\.)"))
-                return edition;
+                return 1;
 
             var editionString = reference.Substring(0, reference.IndexOf(".", StringComparison.Ordinal));
             reference = reference.Remove(0, editionString.Length + 2);
-            edition = Convert.ToInt32(Regex.Match(editionString, @"(^[0-9]*)").Value);
-
-            return edition;
+            return Convert.ToInt32(Regex.Match(editionString, @"(^[0-9]*)").Value);
         }
 
         private static string getPlaceOfPublication(ref string reference)
