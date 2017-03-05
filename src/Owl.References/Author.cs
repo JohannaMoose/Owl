@@ -7,7 +7,7 @@ namespace Owl.References
     /// <summary>
     /// Class representing an author or ap erson
     /// </summary>
-    public class Author : IEquatable<Author>
+    public class Author : IEquatable<Author>, IComparable<Author>
     {
         /// <summary>
         /// Creates a new instance of the Authors class
@@ -78,6 +78,18 @@ namespace Owl.References
                 hashCode = (hashCode * 397) ^ (LastName?.GetHashCode() ?? 0);
                 return hashCode;
             }
+        }
+
+        /// <summary>Compares the current object with another object of the same type.</summary>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other" /> parameter.Zero This object is equal to <paramref name="other" />. Greater than zero This object is greater than <paramref name="other" />. </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public int CompareTo(Author other)
+        {
+            if (ReferenceEquals(this, other)) return 0;
+            if (ReferenceEquals(null, other)) return 1;
+            var firstNameComparison = string.Compare(FirstName, other.FirstName, StringComparison.Ordinal);
+            if (firstNameComparison != 0) return firstNameComparison;
+            return string.Compare(LastName, other.LastName, StringComparison.Ordinal);
         }
     }
 }
