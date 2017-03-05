@@ -6,7 +6,7 @@ namespace Owl.References
     /// <summary>
     /// Class representing a book reference 
     /// </summary>
-    public class Book
+    public class Book : IEquatable<Book>
     {
         /// <summary>
         /// Create a new instance of the book class
@@ -104,5 +104,54 @@ namespace Owl.References
         /// Get the ISBN number of the book, empty string if not given
         /// </summary>
         public string ISBN { get; private set; }
+
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(Book other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return string.Equals(Title, other.Title) && 
+                Equals(Authors, other.Authors) && 
+                Edition == other.Edition && 
+                string.Equals(PlaceOfPublication, other.PlaceOfPublication) && 
+                string.Equals(Publisher, other.Publisher) && 
+                YearOfPublication == other.YearOfPublication && 
+                StartPage == other.StartPage && 
+                EndPage == other.EndPage && 
+                string.Equals(ISBN, other.ISBN);
+        }
+
+        /// <summary>Determines whether the specified object is equal to the current object.</summary>
+        /// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+        /// <param name="obj">The object to compare with the current object. </param>
+        /// <filterpriority>2</filterpriority>
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == GetType() && Equals((Book) obj);
+        }
+
+        /// <summary>Serves as the default hash function. </summary>
+        /// <returns>A hash code for the current object.</returns>
+        /// <filterpriority>2</filterpriority>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = Title?.GetHashCode() ?? 0;
+                hashCode = (hashCode * 397) ^ (Authors?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ Edition;
+                hashCode = (hashCode * 397) ^ (PlaceOfPublication?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ (Publisher?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ YearOfPublication;
+                hashCode = (hashCode * 397) ^ StartPage;
+                hashCode = (hashCode * 397) ^ EndPage;
+                hashCode = (hashCode * 397) ^ (ISBN?.GetHashCode() ?? 0);
+                return hashCode;
+            }
+        }
     }
 }
