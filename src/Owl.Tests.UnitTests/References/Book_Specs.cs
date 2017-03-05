@@ -246,5 +246,47 @@ namespace Owl.Tests.UnitTests.References
         }
 
         #endregion CreateFull
+
+        #region Equals
+
+        [Test]
+        public void equals_should_return_true_for_same()
+        {
+            // Given
+            var first = Book.CreateFull("My title", new List<Author>
+            {
+                new Author("Name", "A"),
+                new Author("Name B", "B")
+            }, 1, "City", "Publsiher", 2010);
+            var second = Book.CreateFull("My title", new List<Author>
+            {
+                new Author("Name", "A"),
+                new Author("Name B", "B")
+            }, 1, "City", "Publsiher", 2010);
+
+            // Then
+            Assert.AreEqual(first, second);
+        }
+
+        [Test]
+        public void equals_should_return_true_even_if_authors_are_ordered_differently()
+        {
+            // Given 
+            var first = Book.CreateFull("My title", new List<Author>
+            {
+                new Author("Name", "A"),
+                new Author("Name B", "B")
+            }, 1, "City", "Publsiher", 2010);
+            var second = Book.CreateFull("My title", new List<Author>
+            {
+                new Author("Name B", "B"),
+                new Author("Name", "A")
+            }, 1, "City", "Publsiher", 2010);
+
+            // Then
+            Assert.AreEqual(first, second);
+        }
+
+        #endregion Equals
     }
 }
