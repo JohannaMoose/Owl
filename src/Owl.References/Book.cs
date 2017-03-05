@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Owl.References
 {
@@ -112,8 +113,8 @@ namespace Owl.References
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return string.Equals(Title, other.Title) && 
-                Equals(Authors, other.Authors) && 
+            return string.Equals(Title, other.Title) &&
+                Authors.OrderBy(t => t).SequenceEqual(other.Authors.OrderBy(t => t)) && 
                 Edition == other.Edition && 
                 string.Equals(PlaceOfPublication, other.PlaceOfPublication) && 
                 string.Equals(Publisher, other.Publisher) && 
