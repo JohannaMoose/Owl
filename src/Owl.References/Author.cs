@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Owl.References
@@ -6,7 +7,7 @@ namespace Owl.References
     /// <summary>
     /// Class representing an author or ap erson
     /// </summary>
-    public class Author
+    public class Author : IEquatable<Author>
     {
         /// <summary>
         /// Creates a new instance of the Authors class
@@ -45,7 +46,10 @@ namespace Owl.References
             return Equals(obj as Author);
         }
 
-        protected bool Equals(Author other)
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(Author other)
         {
             return other != null &&
                    string.Equals(FirstName, other.FirstName) &&
