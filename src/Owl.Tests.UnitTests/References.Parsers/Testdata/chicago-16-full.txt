@@ -1,0 +1,41 @@
+Book - One Author
+Rowling, Joanne K. Harry Potter and the Philosopher’s Stone. London: Bloomsbury, 2004.
+@book{Rowling2004,
+address = {London},
+author = {Rowling, Joanne K},
+publisher = {Bloomsbury},
+title = {{Harry Potter and the philosopher's stone}},
+year = {2004}
+}
+
+Book - Two Authors
+King, Stephen, and Peter. Straub. The Talisman. New York: Ballantine Books, 2001.
+@book{King2001,
+address = {New York},
+author = {King, Stephen and Straub, Peter.},
+publisher = {Ballantine Books},
+title = {{The talisman}},
+year = {2001}
+}
+
+Book - Three Authors 
+Black, Holly, Justine Larbalestier, and Maureen Johnson. Zombies vs Unicorns. New York: Margaret K. McElderry Books, 2010.
+@book{Black2010,
+abstract = {Twelve short stories by a variety of authors seek to answer the question of whether zombies are better than unicorns.},
+address = {New York},
+author = {Black, Holly and Larbalestier, Justine and Johnson, Maureen},
+publisher = {Margaret K. McElderry Books},
+title = {{Zombies vs unicorns}},
+year = {2010}
+}
+
+Book - Four or more authors 
+Black, Holly, Cecil Castellucci, Libba Bray, and Cassandra Clare. Geektastic : Stories from the Nerd Herd. New York: Little, Brown, 2009.
+@book{Black2009,
+abstract = {A collection of geek-inspired stories for young adults features contributions from such authors as Lisa Yee, Sara Zarr, and M.T. Anderson.},
+address = {New York},
+author = {Black, Holly and Castellucci, Cecil and Bray, Libba and Clare, Cassandra},
+publisher = {Little, Brown},
+title = {{Geektastic : stories from the Nerd Herd}},
+year = {2009}
+}
